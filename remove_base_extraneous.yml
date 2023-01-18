@@ -1,0 +1,15 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: "Update Apt Repository"
+    apt:
+      update_cache: yes
+
+
+  - name: "Removes the vim-nox application if present"
+    apt: 
+      name: vim-nox
+      state: absent      

@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: "Update Apt Repository"
+    apt:
+      update_cache: yes
+
+
+  - name: "Install the chrony application"
+    apt: 
+      name: chrony
+      state: latest      
+
+  - name: "Install the vim application"
+    apt:
+      name: vim    
+      state: latest
