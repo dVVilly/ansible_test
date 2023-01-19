@@ -18,19 +18,52 @@
       name:
         - chrony
         - vim
+        - unzip
       state: latest
 
+## Add ansible user      
+  - name: "Add 'ansible' user"
+    tags: always,base
+    user:
+      name: ansible
+      groups: root
+
+  - name: "Add Ansible SSH key"
+    tags: always
+    authorized_key:       
+      user: ansible
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHrF06u8laeF0spuUwdwVf7SLw/xah8vJkIZJ19RcySd ansible"
+
+  - name: "Add sudoers file for ansible user"
+    tags: always
+    copy:
+      src: sudoer_ansible
+      dest: /etc/sudoers.d/ansible
+      owner: root
+      group: root      
+
 # Web Server Block
-## Install Web Server Packages
 - hosts: [web_servers]
   become: true
   tasks:
+
+## Install Web Server Packages  
   - name: "Install Web Server Packages to [web_servers]"
     tags: nginx
     package:
       name:
         - "{{ nginx_package }}"
       state: latest
+
+## Check Nginx Service is Enabled and Running
+  - name: "Check nginx is running"
+    tags: nginx
+    service:
+      name: nginx
+      state: started
+      enabled: yes
+  
+## Deploy default HTML site      
   - name: "Deploy default HTML file"
     tags: nginx
     copy: 
@@ -52,14 +85,30 @@
         - "{{ msq_package }}"
       state: latest
 
+## Check MariaDB Service is Enabled and Running
+  - name: "Check mariadb is running"
+    tags: nginx
+    service:
+      name: mariadb
+      state: started
+      enabled: yes      
+
 # PostgreSQL Server Block
 ## Install PostgreSQL Server Packages
 - hosts: [psq_servers]
   become: true
   tasks:
   - name: "Install PostgreSQL Server Packages to [psq_servers]"
-    tags: pgsql,db
+    tags: postgresql,db
     package:
       name:
         - "{{ pgsql_package }}"
-      state: latest      
+      state: latest     
+
+## Check PostgreSQL Service is Enabled and Running
+  - name: "Check postgresql is running"
+    tags: postgresql
+    service:
+      name: postgresql
+      state: started
+      enabled: yes       
