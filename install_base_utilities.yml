@@ -4,13 +4,14 @@
   become: true
   pre_tasks:
 
-# Update Package Repositories
+# All Block
+## Update Package Repositories
   - name: "Update Package Repositories"
     package:
       update_cache: yes  
 
-# Install Packages
-## Install BASE Applications
+## Install Packages
+### Install BASE Applications
   - name: "Install the base applications"
     tags: always,base
     package: 
@@ -19,6 +20,7 @@
         - vim
       state: latest
 
+# Web Server Block
 ## Install Web Server Packages
 - hosts: [web_servers]
   become: true
@@ -29,7 +31,16 @@
       name:
         - "{{ nginx_package }}"
       state: latest
+  - name: "Deploy default HTML file"
+    tags: nginx
+    copy: 
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
 
+# MariaDB Server Block
 ## Install MariaDB Server Packages
 - hosts: [msq_servers]
   become: true
@@ -41,6 +52,7 @@
         - "{{ msq_package }}"
       state: latest
 
+# PostgreSQL Server Block
 ## Install PostgreSQL Server Packages
 - hosts: [psq_servers]
   become: true
