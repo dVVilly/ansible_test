@@ -13,7 +13,7 @@ dlab-psq.dlab.lan
 [psq_servers:vars]
 pgsql_package = postgresql-14
 
-[docker_servers]
+[doc_servers]
 dlab-doc.dlab.lan
 
 [web_servers]

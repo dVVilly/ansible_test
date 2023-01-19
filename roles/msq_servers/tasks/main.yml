@@ -1,0 +1,16 @@
+# MariaDB Server Role
+## Install MariaDB Server Packages
+- name: "Install MariaDB Server Packages to [msq_servers]"
+  tags: mariadb,db
+  package:
+    name:
+      - "{{ msq_package }}"
+    state: latest
+
+## Check MariaDB Service is Enabled and Running
+- name: "Check mariadb is running"
+  tags: nginx
+  service:
+    name: mariadb
+    state: started
+    enabled: yes     

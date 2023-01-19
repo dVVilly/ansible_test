@@ -1,0 +1,16 @@
+# PostgreSQL Server Block
+## Install PostgreSQL Server Packages
+- name: "Install PostgreSQL Server Packages to [psq_servers]"
+  tags: postgresql,db
+  package:
+    name:
+      - "{{ pgsql_package }}"
+    state: latest     
+
+## Check PostgreSQL Service is Enabled and Running
+- name: "Check postgresql is running"
+  tags: postgresql
+  service:
+    name: postgresql
+    state: started
+    enabled: yes 

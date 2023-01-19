@@ -1,0 +1,26 @@
+# Web Server Role
+## Install Web Server Packages  
+- name: "Install Web Server Packages to [web_servers]"
+  tags: nginx
+  package:
+    name:
+      - "{{ nginx_package }}"
+    state: latest
+
+## Check Nginx Service is Enabled and Running
+- name: "Check nginx is running"
+  tags: nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+  
+## Deploy default HTML site      
+- name: "Deploy default HTML file"
+  tags: nginx
+  copy: 
+    src: default_site.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: 0644
