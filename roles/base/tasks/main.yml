@@ -34,23 +34,34 @@
     owner: root
     group: root
 
-## Setup dotfiles
-## Deploy vimrc for david
-- name: "Deploy user's .vimrc"
-  tags: base,always
-  copy: 
-    src: vimrc
-    dest: /home/david/.vimrc
-    owner: david
-    group: david
-    mode: 0644          
+## Setup dot and config files
+### Deploy vimrc for david
+# - name: "Deploy user's .vimrc"
+#   tags: base,always
+#   copy: 
+#     src: vimrc
+#     dest: /home/david/.vimrc
+#     owner: david
+#     group: david
+#     mode: 0644          
 
-## Deploy bashrc for david
-- name: "Deploy user's .bashrc"
-  tags: base,always
-  copy: 
-    src: bashrc
-    dest: /home/david/.bashrc
-    owner: david
-    group: david
-    mode: 0644    
+# ### Deploy bashrc for david
+# - name: "Deploy user's .bashrc"
+#   tags: base,always
+#   copy: 
+#     src: bashrc
+#     dest: /home/david/.bashrc
+#     owner: david
+#     group: david
+#     mode: 0644    
+
+### Deploy sshd_config file from template
+- name: "Deploy sshd_config file from template"
+  tags: ssh
+  template:
+    src: "{{ ssh_template_file }}"
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart_sshd

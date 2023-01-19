@@ -14,7 +14,7 @@ dlab-doc.dlab.lan
 dlab-web.dlab.lan
 
 [servers:children]
-msq-servers
-psq-servers
-web-servers
-doc-servers
+msq_servers
+psq_servers
+web_servers
+doc_servers
