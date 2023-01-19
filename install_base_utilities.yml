@@ -2,41 +2,52 @@
 
 - hosts: all
   become: true
-  tasks:
+  pre_tasks:
 
 # Update Package Repositories
-  - name: "Update Package Repository - Debian-based"
-    apt:
-      update_cache: yes
-    when: ansible_distribution in ["Ubuntu", "Debian"]
+  - name: "Update Package Repositories"
+    package:
+      update_cache: yes  
 
-  - name: "Update Package Repository - RHEL-based"
-    dnf:
-      update_cache: yes
-    when: ansible_distribution in ["Fedora", "AlmaOS"]
-
-
-# Install Applications
-  - name: "Install the chrony application - Debian-based"
-    apt: 
-      name: chrony
-      state: latest      
-    when: ansible_distribution in ["Ubuntu", "Debian"]
-
-  - name: "Install the chrony application - RHEL-based"
-    dnf: 
-      name: chrony
-      state: latest      
-    when: ansible_distribution in ["Fedora", "AlmaOS"]
-
-  - name: "Install the vim application - Debian-based"
-    apt:
-      name: vim    
+# Install Packages
+## Install BASE Applications
+  - name: "Install the base applications"
+    tags: always,base
+    package: 
+      name:
+        - chrony
+        - vim
       state: latest
-    when: ansible_distribution in ["Ubuntu", "Debian"]
 
-  - name: "Install the vim application - RHEL-based"
-    dnf:
-      name: vim    
+## Install Web Server Packages
+- hosts: [web_servers]
+  become: true
+  tasks:
+  - name: "Install Web Server Packages to [web_servers]"
+    tags: nginx
+    package:
+      name:
+        - "{{ nginx_package }}"
       state: latest
-    when: ansible_distribution in ["Fedora", "AlmaOS"]    
+
+## Install MariaDB Server Packages
+- hosts: [msq_servers]
+  become: true
+  tasks:
+  - name: "Install MariaDB Server Packages to [msq_servers]"
+    tags: mariadb,db
+    package:
+      name:
+        - "{{ msq_package }}"
+      state: latest
+
+## Install PostgreSQL Server Packages
+- hosts: [psq_servers]
+  become: true
+  tasks:
+  - name: "Install PostgreSQL Server Packages to [psq_servers]"
+    tags: pgsql,db
+    package:
+      name:
+        - "{{ pgsql_package }}"
+      state: latest      

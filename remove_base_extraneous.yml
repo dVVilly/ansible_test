@@ -4,14 +4,8 @@
   become: true
   tasks:
 
-  - name: "Update Apt Repository"
-    apt:
-      update_cache: yes
-    when: ansible_distribution in ["Ubuntu", "Debian"]
-
-
-  - name: "Removes the vim-nox application if present"
-    apt: 
-      name: vim-nox
+  - name: "Removes the unnecessary default applications if present"
+    package: 
+      name:
+        - vim-nox
       state: absent      
-    when: ansible_distribution in ["Ubuntu", "Debian"]
