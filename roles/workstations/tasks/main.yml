@@ -1,0 +1,18 @@
+## Install Packages
+### Install WORKSTATION Applications
+- name: "Install the WORKSTATION applications (Fedora)"
+  tags: always,workstations
+  package: 
+    name:
+      - libreoffice.x86_64
+      - libreoffice-langpack-en.x86_64
+      - libreoffice-help-en.x86_64
+      - libreoffice-base.x86_64
+      - firefox
+      - gnome-tweaks
+      - code
+      - gimp
+      - gnome-browser-connector
+      - '@virtualization'
+    state: latest
+  when: ansible_distribution == "Fedora"

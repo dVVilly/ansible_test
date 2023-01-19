@@ -2,13 +2,15 @@
 
 ## Install Packages
 ### Install BASE Applications
-- name: "Install the base applications"
+- name: "Install the BASE applications"
   tags: always,base
   package: 
     name:
       - chrony
       - vim
       - unzip
+      - tree
+      - neofetch
     state: latest
 
 ## Add ansible user      
@@ -30,4 +32,25 @@
     src: sudoer_ansible
     dest: /etc/sudoers.d/ansible
     owner: root
-    group: root      
+    group: root
+
+## Setup dotfiles
+## Deploy vimrc for david
+- name: "Deploy user's .vimrc"
+  tags: nginx
+  copy: 
+    src: vimrc
+    dest: /home/david/.vimrc
+    owner: david
+    group: david
+    mode: 0644          
+
+## Deploy bashrc for david
+- name: "Deploy user's .bashrc"
+  tags: nginx
+  copy: 
+    src: bashrc
+    dest: /home/david/.bashrc
+    owner: david
+    group: david
+    mode: 0644    
