@@ -1,17 +1,11 @@
 [workstations]
-david-fedora.dlab.lan remote_user=david
+david-fedora.dlab.lan
 
 [msq_servers]
 dlab-msq.dlab.lan
 
-[msq_servers:vars]
-msq_package = mariadb-server
-
 [psq_servers]
 dlab-psq.dlab.lan
-
-[psq_servers:vars]
-pgsql_package = postgresql-14
 
 [doc_servers]
 dlab-doc.dlab.lan
@@ -19,7 +13,8 @@ dlab-doc.dlab.lan
 [web_servers]
 dlab-web.dlab.lan
 
-[web_servers:vars]
-nginx_package = nginx-full
-
-[servers]
+[servers:children]
+msq-servers
+psq-servers
+web-servers
+doc-servers
