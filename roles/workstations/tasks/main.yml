@@ -12,6 +12,7 @@
       - gnome-tweaks
       - code
       - gimp
+      - gimp-help-en_GB.noarch
       - gnome-browser-connector
       - '@virtualization'
     state: latest

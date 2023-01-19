@@ -37,7 +37,7 @@
 ## Setup dotfiles
 ## Deploy vimrc for david
 - name: "Deploy user's .vimrc"
-  tags: nginx
+  tags: base,always
   copy: 
     src: vimrc
     dest: /home/david/.vimrc
@@ -47,7 +47,7 @@
 
 ## Deploy bashrc for david
 - name: "Deploy user's .bashrc"
-  tags: nginx
+  tags: base,always
   copy: 
     src: bashrc
     dest: /home/david/.bashrc

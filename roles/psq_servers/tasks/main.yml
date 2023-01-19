@@ -4,13 +4,13 @@
   tags: postgresql,db
   package:
     name:
-      - "{{ pgsql_package }}"
+      - "{{ postgresql_package }}"
     state: latest     
 
 ## Check PostgreSQL Service is Enabled and Running
 - name: "Check postgresql is running"
   tags: postgresql
   service:
-    name: postgresql
+    name: "{{ postgresql_service }}"
     state: started
     enabled: yes 

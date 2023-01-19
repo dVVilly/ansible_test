@@ -4,13 +4,13 @@
   tags: mariadb,db
   package:
     name:
-      - "{{ msq_package }}"
+      - "{{ mariadb_package }}"
     state: latest
 
 ## Check MariaDB Service is Enabled and Running
 - name: "Check mariadb is running"
-  tags: nginx
+  tags: mariadb
   service:
-    name: mariadb
+    name: "{{ mariadb_service }}"
     state: started
     enabled: yes     
