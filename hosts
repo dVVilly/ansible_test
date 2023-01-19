@@ -1,5 +1,5 @@
-#[workstation]
-#david-fedora.dlab.lan
+[workstation]
+localhost
 
 [server]
 dlab-msq.dlab.lan

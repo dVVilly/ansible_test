@@ -4,17 +4,39 @@
   become: true
   tasks:
 
-  - name: "Update Apt Repository"
+# Update Package Repositories
+  - name: "Update Package Repository - Debian-based"
     apt:
       update_cache: yes
+    when: ansible_distribution in ["Ubuntu", "Debian"]
+
+  - name: "Update Package Repository - RHEL-based"
+    dnf:
+      update_cache: yes
+    when: ansible_distribution in ["Fedora", "AlmaOS"]
 
 
-  - name: "Install the chrony application"
+# Install Applications
+  - name: "Install the chrony application - Debian-based"
     apt: 
       name: chrony
       state: latest      
+    when: ansible_distribution in ["Ubuntu", "Debian"]
 
-  - name: "Install the vim application"
+  - name: "Install the chrony application - RHEL-based"
+    dnf: 
+      name: chrony
+      state: latest      
+    when: ansible_distribution in ["Fedora", "AlmaOS"]
+
+  - name: "Install the vim application - Debian-based"
     apt:
       name: vim    
       state: latest
+    when: ansible_distribution in ["Ubuntu", "Debian"]
+
+  - name: "Install the vim application - RHEL-based"
+    dnf:
+      name: vim    
+      state: latest
+    when: ansible_distribution in ["Fedora", "AlmaOS"]    

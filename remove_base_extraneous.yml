@@ -7,9 +7,11 @@
   - name: "Update Apt Repository"
     apt:
       update_cache: yes
+    when: ansible_distribution in ["Ubuntu", "Debian"]
 
 
   - name: "Removes the vim-nox application if present"
     apt: 
       name: vim-nox
       state: absent      
+    when: ansible_distribution in ["Ubuntu", "Debian"]
