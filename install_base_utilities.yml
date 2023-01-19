@@ -8,7 +8,8 @@
 ## Update Package Repositories
   - name: "Update Package Repositories"
     package:
-      update_cache: yes  
+      update_cache: yes
+    changed_when: false  
 
 ## Install Packages
 ### Install BASE Applications

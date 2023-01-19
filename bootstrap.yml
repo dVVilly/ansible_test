@@ -1,0 +1,32 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+# All Block
+## Update Package Repositories
+  - name: "Update Package Repositories"
+    package:
+      update_cache: yes  
+
+## Add ansible user      
+  - name: "Add 'ansible' user"
+    tags: always,base
+    user:
+      name: ansible
+      groups: root
+
+  - name: "Add Ansible SSH key"
+    tags: always
+    authorized_key:       
+      user: ansible
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHrF06u8laeF0spuUwdwVf7SLw/xah8vJkIZJ19RcySd ansible"
+
+  - name: "Add sudoers file for ansible user"
+    tags: always
+    copy:
+      src: sudoer_ansible
+      dest: /etc/sudoers.d/ansible
+      owner: root
+      group: root

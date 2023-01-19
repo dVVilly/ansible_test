@@ -1,5 +1,5 @@
 [workstations]
-localhost remote_user=david
+david-fedora.dlab.lan remote_user=david
 
 [msq_servers]
 dlab-msq.dlab.lan
