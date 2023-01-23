@@ -10,13 +10,34 @@
   when: ansible_distribution == "Fedora"
   notify: dnf-check-update
 
+- name: Add Vivaldi's Repository
+  ansible.builtin.yum_repository:
+    name: vivaldi
+    description: "Vivaldi"
+    baseurl: "https://repo.vivaldi.com/archive/rpm/$basearch"
+    gpgkey: "https://repo.vivaldi.com/archive/linux_signing_key.pub"
+  when: ansible_distribution == "Fedora"
+  notify: dnf-check-update
+
+
 - name: Install RPM Fusion (nonfree)
   yum:
     name: https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-37.noarch.rpm
     disable_gpg_check: true
     state: present
   notify: dnf-check-update
-## Required for lpf-spotify-client  
+## Required for:
+# - lpf-spotify-client
+
+
+- name: Install RPM Fusion (free)
+  yum:
+    name: https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-37.noarch.rpm
+    disable_gpg_check: true
+    state: present
+  notify: dnf-check-update
+## Required for:
+# - vlc
 
 
 ### Install WORKSTATION Applications
@@ -24,7 +45,7 @@
   tags: always,workstations
   package: 
     name:
-      - flatpak
+      - screen
       - libreoffice.x86_64
       - libreoffice-langpack-en.x86_64
       - libreoffice-help-en.x86_64
@@ -35,7 +56,13 @@
       - gimp
       - gimp-help-en_GB.noarch
       - gnome-browser-connector
+      - remmina
+      - remmina-gnome-session
+      - remmina-plugins-rdp
       - '@virtualization'
       - lpf-spotify-client
+      - vivaldi-stable
+      - vlc
+      - timeshift
     state: latest
   when: ansible_distribution == "Fedora"
