@@ -1,9 +1,30 @@
 ## Install Packages
+
+### Add required repositories
+- name: Add Microsoft's VS Code Repository
+  ansible.builtin.yum_repository:
+    name: microsoft-vs-code
+    description: "Microsoft VS Code"
+    gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+    baseurl: "https://packages.microsoft.com/yumrepos/vscode"
+  when: ansible_distribution == "Fedora"
+  notify: dnf-check-update
+
+- name: Install RPM Fusion (nonfree)
+  yum:
+    name: https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-37.noarch.rpm
+    disable_gpg_check: true
+    state: present
+  notify: dnf-check-update
+## Required for lpf-spotify-client  
+
+
 ### Install WORKSTATION Applications
 - name: "Install the WORKSTATION applications (Fedora)"
   tags: always,workstations
   package: 
     name:
+      - flatpak
       - libreoffice.x86_64
       - libreoffice-langpack-en.x86_64
       - libreoffice-help-en.x86_64
@@ -15,5 +36,6 @@
       - gimp-help-en_GB.noarch
       - gnome-browser-connector
       - '@virtualization'
+      - lpf-spotify-client
     state: latest
   when: ansible_distribution == "Fedora"
