@@ -14,3 +14,8 @@
     name: "{{ postgresql_service }}"
     state: started
     enabled: yes 
+
+## Configure UFW for PostgreSQL
+- name: Allow PostgreSQL in UFW
+  ufw: rule=allow port="{{ postgresql_port }}" proto=tcp
+  when: ansible_distribution == 'Ubuntu'

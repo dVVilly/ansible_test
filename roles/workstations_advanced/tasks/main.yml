@@ -1,0 +1,11 @@
+### Install WORKSTATION_Advanced Applications
+- name: "Install the WORKSTATION Advanced applications (Fedora)"
+  tags: always,workstations
+  package: 
+    name:
+      - remmina
+      - remmina-gnome-session
+      - remmina-plugins-rdp
+      - '@virtualization'
+    state: latest
+  when: ansible_distribution == "Fedora"

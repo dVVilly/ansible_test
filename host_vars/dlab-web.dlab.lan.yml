@@ -1,5 +1,10 @@
 nginx_package: nginx-full
 nginx_service: nginx
+nginx_ports: 80,443
 
 ssh_users: "david user ansible"
 ssh_template_file: sshd_config_ubuntu.j2
+
+chrony_service: chrony
+chrony_port: 323
+chrony_protocol: udp

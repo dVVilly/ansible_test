@@ -1,0 +1,9 @@
+---
+timezone: Australia/Sydney
+nts_server: dlab-web.dlab.lan
+chrony_server_conf: files/chrony_server.conf
+chrony_client_conf: files/chrony_client.conf
+chrony_conf_target: /etc/chrony/chrony.conf
+chrony_server_template: roles/time_servers/templates/chrony_server.conf.j2
+chrony_client_template: roles/base/templates/chrony_client.conf.j2
+subnet: 192.168.0.0/16

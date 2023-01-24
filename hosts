@@ -1,6 +1,9 @@
 [workstations]
 david-fedora.dlab.lan
 
+[workstations_advanced]
+david-fedora.dlab.lan
+
 [msq_servers]
 dlab-msq.dlab.lan
 
@@ -18,3 +21,9 @@ msq_servers
 psq_servers
 web_servers
 doc_servers
+
+[ansible_controllers]
+david-fedora.dlab.lan
+
+[time_servers]
+dlab-web.dlab.lan

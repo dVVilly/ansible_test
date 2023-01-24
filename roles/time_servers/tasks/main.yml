@@ -1,0 +1,11 @@
+  ## Configure Chrony Servers
+- name: Deploy chrony.conf file from template"
+  tags: chrony,ntp
+  template:
+    src: "{{ chrony_server_template }}"
+    dest: /etc/chrony/chrony.conf
+    owner: root
+    group: root
+    mode: 0644
+  when: "'time_servers' in group_names"
+  notify: restart_chrony

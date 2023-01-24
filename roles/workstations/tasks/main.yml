@@ -56,13 +56,34 @@
       - gimp
       - gimp-help-en_GB.noarch
       - gnome-browser-connector
-      - remmina
-      - remmina-gnome-session
-      - remmina-plugins-rdp
-      - '@virtualization'
+      - gnome-tweaks
+      - gnome-terminal      
       - lpf-spotify-client
       - vivaldi-stable
       - vlc
       - timeshift
+      - wireguard-tools     
     state: latest
   when: ansible_distribution == "Fedora"
+
+  
+  ### Configure GUI (Gnome)
+  #### Install Pre-requisites
+- name: "Deploy gnome-terminal configuration"
+  tags: workstations,gnome
+  package:
+    name:
+      - dconf
+      - gnome-terminal
+      - python3-psutil
+    state: latest
+- name: "Enable Gnome Terminal Transparency"
+  tags: workstations,gnome
+  dconf:
+    key: "/org/gnome/terminal/use-transparent-background"
+    value: "true"
+- name: "Set Gnome Terminal Transparency"
+  tags: workstations,gnome
+  dconf:
+    key: "/org/gnome/terminal/background-transparency-percent"
+    value: "6"

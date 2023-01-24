@@ -1,0 +1,8 @@
+### Install ANSIBLE CONTROLLER Packages
+- name: "Install the ANSIBLE CONTROLLER Packages"
+  tags: always,workstations,ansible
+  package: 
+    name:
+      - ansible
+      - ansible-core
+    state: latest

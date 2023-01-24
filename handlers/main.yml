@@ -1,0 +1,4 @@
+- name: "restart_chrony"
+  service:
+    name: "{{ chrony_service }}"
+    state: restarted

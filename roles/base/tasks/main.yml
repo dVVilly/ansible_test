@@ -1,4 +1,9 @@
 # Base Role
+## Configure System
+### Set Timezone
+- name: "Set timezone"
+  community.general.timezone:
+    name: "{{ timezone }}"
 
 ## Install Packages
 ### Install BASE Applications
@@ -34,6 +39,17 @@
     owner: root
     group: root
 
+### Install Ubuntu BASE
+- name: "Install the Ubuntu BASE applications"
+  tags: always,base
+  package: 
+    name:
+      - ufw
+      - iputils-ping
+      - bind9-utils
+    state: latest   
+  when: ansible_distribution == 'Ubuntu'   
+
 ## Setup dot and config files
 ### Deploy vimrc for david
 # - name: "Deploy user's .vimrc"
@@ -65,3 +81,25 @@
     group: root
     mode: 0644
   notify: restart_sshd
+
+## Configure Firewall(s)
+### UFW
+- name: Allow SSH in UFW
+  ufw: rule=allow port=22 proto=tcp
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Set firewall default policy
+  ufw: state=enabled policy=deny
+  when: ansible_distribution == 'Ubuntu'  
+
+  ## Configure Chrony Clients
+- name: Deploy chrony.conf file from template"
+  tags: chrony,ntp
+  template:
+    src: "{{ chrony_client_template }}"
+    dest: "{{ chrony_conf_target }}"
+    owner: root
+    group: root
+    mode: 0644
+  when: "'time_servers' not in group_names"
+  notify: restart_chrony

@@ -5,6 +5,9 @@
   become: true
   pre_tasks:
 
+  - name: "Include global_vars.yml"  
+    ansible.builtin.include_vars: vars/global_vars.yml
+
 ## Update Package Repositories
   - name: "Update Package Repositories"
     tags: always,base
@@ -42,3 +45,13 @@
   become: true
   roles:
     - doc_servers    
+
+- hosts: time_servers
+  become: true
+  roles:
+    - time_servers    
+
+- hosts: ansible_controllers
+  become: true
+  roles:
+    - ansible_controller

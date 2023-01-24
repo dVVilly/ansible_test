@@ -24,3 +24,8 @@
     owner: root
     group: root
     mode: 0644
+
+## Configure UFW for Nginx
+- name: Allow Nginx in UFW
+  ufw: rule=allow port="{{ nginx_ports }}" proto=tcp
+  when: ansible_distribution == 'Ubuntu'    
