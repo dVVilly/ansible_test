@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Conky
+GenericName=Start the conky application on startup
+Comment=Start the conky application on startup
+Exec=/usr/bin/conky --config=/home/david/.config/conky/config.conf
+Terminal=false
+Type=Application
+X-GNOME-Autostart-enabled=true

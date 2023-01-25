@@ -62,13 +62,14 @@
       - vivaldi-stable
       - vlc
       - timeshift
-      - wireguard-tools     
+      - wireguard-tools  
+      - conky   
     state: latest
   when: ansible_distribution == "Fedora"
 
   
-  ### Configure GUI (Gnome)
-  #### Install Pre-requisites
+### Configure GUI (Gnome)
+#### Install Pre-requisites
 - name: "Deploy gnome-terminal configuration"
   tags: workstations,gnome
   package:
@@ -77,13 +78,34 @@
       - gnome-terminal
       - python3-psutil
     state: latest
-- name: "Enable Gnome Terminal Transparency"
+- name: "Copy gnome config file to /tmp"
   tags: workstations,gnome
-  dconf:
-    key: "/org/gnome/terminal/use-transparent-background"
-    value: "true"
-- name: "Set Gnome Terminal Transparency"
+  copy:
+    src: gnome_dconf_dump
+    dest: /tmp/gnome_dconf_dump
+    owner: "{{primary_user}}"
+    group: "{{primary_user}}"
+    mode: 0600    
+- name: "Deploy gnome dconf file"
   tags: workstations,gnome
-  dconf:
-    key: "/org/gnome/terminal/background-transparency-percent"
-    value: "6"
+  ansible.builtin.command:
+    cmd: dconf load -f /org/gnome/ < ./gnome_dconf_dump
+    chdir: /tmp
+
+#### Configure Conky
+- name: "Deploy conky.config"
+  tags: workstations
+  copy: 
+    src: conky.conf
+    dest: /home/{{primary_user}}/.config/conky/conky.conf
+    owner: "{{primary_user}}"
+    group: "{{primary_user}}"
+    mode: 0600
+- name: "Deploy conky.desktop"
+  tags: workstations
+  copy: 
+    src: conky_autostart.desktop
+    dest: /home/{{primary_user}}/.config/autostart/conky_autostart.desktop
+    owner: "{{primary_user}}"
+    group: "{{primary_user}}"
+    mode: 0600    

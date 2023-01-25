@@ -71,16 +71,29 @@
 #     group: david
 #     mode: 0644    
 
-### Deploy sshd_config file from template
+### Deploy sshd_config file from template (Debian)
 - name: "Deploy sshd_config file from template"
   tags: ssh
   template:
-    src: "{{ ssh_template_file }}"
+    src: "{{ ssh_template_ubuntu }}"
     dest: /etc/ssh/sshd_config
     owner: root
     group: root
     mode: 0644
+  when: ansible_distribution == 'Ubuntu'    
   notify: restart_sshd
+
+### Deploy sshd_config file from template (RHEL)
+- name: "Deploy sshd_config file from template"
+  tags: ssh
+  template:
+    src: "{{ ssh_template_rhel }}"
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_distribution == 'Fedora'
+  notify: restart_sshd  
 
 ## Configure Firewall(s)
 ### UFW
@@ -92,14 +105,26 @@
   ufw: state=enabled policy=deny
   when: ansible_distribution == 'Ubuntu'  
 
-  ## Configure Chrony Clients
-- name: Deploy chrony.conf file from template"
+## Configure Chrony Clients (Debian-based)
+- name: Deploy chrony.conf file from template (Debian-based)"
   tags: chrony,ntp
   template:
     src: "{{ chrony_client_template }}"
-    dest: "{{ chrony_conf_target }}"
+    dest: "{{ chrony_conf_target_ubuntu }}"
     owner: root
     group: root
     mode: 0644
-  when: "'time_servers' not in group_names"
+  when: ('time_servers' not in group_names) and ('ansible_distribution' == 'Ubuntu')
+  notify: restart_chrony
+
+## Configure Chrony Clients (RHEL-based)
+- name: Deploy chrony.conf file from template (RHEL-based)"
+  tags: chrony,ntp
+  template:
+    src: "{{ chrony_client_template }}"
+    dest: "{{ chrony_conf_target_rhel }}"
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_distribution == 'Fedora'
   notify: restart_chrony

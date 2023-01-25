@@ -21,9 +21,13 @@ msq_servers
 psq_servers
 web_servers
 doc_servers
+matrix_servers
 
 [ansible_controllers]
 david-fedora.dlab.lan
 
 [time_servers]
 dlab-web.dlab.lan
+
+[matrix_servers]
+dlab-mat.dlab.lan

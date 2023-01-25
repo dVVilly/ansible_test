@@ -1,3 +1,1 @@
-ssh_users: "david user ansible"
-ssh_template_file: sshd_config_rhel.j2
-chrony_conf_target: /etc/chrony.conf
+primary_user: david

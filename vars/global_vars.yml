@@ -1,9 +1,42 @@
 ---
+
+## System Configuration
 timezone: Australia/Sydney
 nts_server: dlab-web.dlab.lan
+sftp_subsystem: /usr/lib/openssh/sftp-server
+
+## Chrony Configuration
 chrony_server_conf: files/chrony_server.conf
 chrony_client_conf: files/chrony_client.conf
-chrony_conf_target: /etc/chrony/chrony.conf
+chrony_conf_target_ubuntu: /etc/chrony/chrony.conf
+chrony_conf_target_rhel: /etc/chrony.conf
 chrony_server_template: roles/time_servers/templates/chrony_server.conf.j2
 chrony_client_template: roles/base/templates/chrony_client.conf.j2
 subnet: 192.168.0.0/16
+
+### Server Specifics
+chrony_service: chrony
+chrony_port: 323
+chrony_protocol: udp
+
+
+## SSH Configuration
+ssh_users: "david user ansible"
+ssh_template_ubuntu: sshd_config_ubuntu.j2
+ssh_template_rhel: sshd_config_rhel.j2
+
+## MariaDB Configuration
+mariadb_service: mariadb
+mariadb_package: mariadb-server
+mariadb_port: 3306
+
+## PostgreSQL Configuration
+postgresql_service: postgresql
+postgresql_package: postgresql-14
+postgresql_port: 5432
+
+## Nginx Configuration
+nginx_package: nginx-full
+nginx_service: nginx
+nginx_ports: 80,443
+

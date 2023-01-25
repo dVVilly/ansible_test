@@ -1,0 +1,163 @@
+[control-center]
+last-panel='applications'
+window-state=(980, 640, false)
+
+[desktop/app-folders]
+folder-children=['Utilities', 'YaST']
+
+[desktop/app-folders/folders/Utilities]
+apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop']
+categories=['X-GNOME-Utilities']
+name='X-GNOME-Utilities.directory'
+translate=true
+
+[desktop/app-folders/folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
+
+[desktop/background]
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri='file:///usr/share/backgrounds/gnome/adwaita-l.webp'
+picture-uri-dark='file:///usr/share/backgrounds/gnome/adwaita-d.webp'
+primary-color='#3071AE'
+secondary-color='#000000'
+
+[desktop/calendar]
+show-weekdate=false
+
+[desktop/input-sources]
+current=uint32 0
+sources=[('xkb', 'au')]
+xkb-options=@as []
+
+[desktop/interface]
+clock-show-seconds=false
+color-scheme='prefer-dark'
+document-font-name='Cantarell 10'
+font-antialiasing='grayscale'
+font-hinting='slight'
+font-name='Cantarell 10'
+monospace-font-name='Source Code Pro 9'
+toolkit-accessibility=false
+
+[desktop/notifications]
+application-children=['org-gnome-software', 'org-gnome-terminal', 'virt-manager', 'firefox', 'code', 'spotify', 'vivaldi-stable']
+
+[desktop/notifications/application/code]
+application-id='code.desktop'
+
+[desktop/notifications/application/firefox]
+application-id='firefox.desktop'
+
+[desktop/notifications/application/org-gnome-software]
+application-id='org.gnome.Software.desktop'
+
+[desktop/notifications/application/org-gnome-terminal]
+application-id='org.gnome.Terminal.desktop'
+
+[desktop/notifications/application/spotify]
+application-id='spotify.desktop'
+
+[desktop/notifications/application/virt-manager]
+application-id='virt-manager.desktop'
+
+[desktop/notifications/application/vivaldi-stable]
+application-id='vivaldi-stable.desktop'
+
+[desktop/peripherals/keyboard]
+numlock-state=true
+
+[desktop/privacy]
+report-technical-problems=false
+
+[desktop/screensaver]
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri='file:///usr/share/backgrounds/gnome/adwaita-l.webp'
+primary-color='#3071AE'
+secondary-color='#000000'
+
+[desktop/wm/keybindings]
+maximize=['<Control><Shift><Super>Up']
+unmaximize=['<Control><Shift><Super>Down', '<Alt>F5']
+
+[desktop/wm/preferences]
+button-layout='appmenu:minimize,maximize,close'
+titlebar-font='Cantarell Bold 10'
+
+[evolution-data-server]
+migrated=true
+
+[login-screen]
+enable-fingerprint-authentication=true
+enable-password-authentication=true
+enable-smartcard-authentication=false
+
+[mutter]
+edge-tiling=false
+
+[mutter/keybindings]
+toggle-tiled-left=['<Control><Shift><Super>Left']
+toggle-tiled-right=['<Control><Shift><Super>Right']
+
+[nautilus/compression]
+default-compression-format='zip'
+
+[nautilus/icon-view]
+default-zoom-level='small'
+
+[nautilus/preferences]
+default-folder-viewer='icon-view'
+migrated-gtk-settings=true
+search-filter-time-type='last_modified'
+search-view='list-view'
+
+[nautilus/window-state]
+initial-size=(1029, 550)
+
+[settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Control><Alt>t'
+command='gnome-terminal'
+name='Terminal'
+
+[shell]
+app-picker-layout=[{'org.fedoraproject.MediaWriter.desktop': <{'position': <0>}>, 'org.gnome.Contacts.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'libreoffice-calc.desktop': <{'position': <5>}>, 'org.gnome.Photos.desktop': <{'position': <6>}>, 'org.gnome.Totem.desktop': <{'position': <7>}>, 'org.gnome.Calculator.desktop': <{'position': <8>}>, 'libreoffice-impress.desktop': <{'position': <9>}>, 'simple-scan.desktop': <{'position': <10>}>, 'org.gnome.Settings.desktop': <{'position': <11>}>, 'gnome-system-monitor.desktop': <{'position': <12>}>, 'org.gnome.Boxes.desktop': <{'position': <13>}>, 'org.gnome.Terminal.desktop': <{'position': <14>}>, 'Utilities': <{'position': <15>}>, 'libreoffice-writer.desktop': <{'position': <16>}>, 'yelp.desktop': <{'position': <17>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <18>}>, 'org.gnome.Cheese.desktop': <{'position': <19>}>, 'org.gnome.TextEditor.desktop': <{'position': <20>}>, 'org.gnome.Tour.desktop': <{'position': <21>}>, 'code.desktop': <{'position': <22>}>, 'remote-viewer.desktop': <{'position': <23>}>}, {'virt-manager.desktop': <{'position': <0>}>}]
+command-history=['r']
+enabled-extensions=['background-logo@fedorahosted.org', 'wintile@nowsci.com']
+favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'vivaldi-stable.desktop']
+last-selected-power-profile='performance'
+welcome-dialog-last-shown-version='43.0'
+
+[shell/overrides]
+edge-tiling=false
+
+[shell/world-clocks]
+locations=@av []
+
+[software]
+check-timestamp=int64 1674589316
+first-run=false
+security-timestamp=int64 0
+update-notification-timestamp=int64 1674589318
+
+[system/location]
+enabled=false
+
+[terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+background-transparency-percent=10
+use-transparent-background=true
+
+[terminal/legacy/profiles:/legacy]
+background-transparency-percent=90
+
+[terminal/legacy/profiles:/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+background-transparency-percent=6
+use-transparent-background=true
+
+[tweaks]
+show-extensions-notice=false
